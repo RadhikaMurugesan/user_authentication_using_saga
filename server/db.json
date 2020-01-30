@@ -1,0 +1,36 @@
+{
+    "users": [
+      {
+        "id": 1,
+        "firstName": "Raddy",
+        "email": "raddy@mail.com",
+        "password": "raddy@123"
+        
+      },
+      {
+        "id": 2,
+        "firstName": "Arun",
+        "email": "arun@mail.com",
+        "password": "arun@123"
+      },
+	  {
+        "id": 3,
+        "firstName": "Shakthi",
+        "email": "shakthi@mail.com",
+        "password": "shakthi@123"
+      },
+	  {
+        "id": 4,
+        "firstName": "Sathyadev",
+        "email": "sathyadev@mail.com",
+        "password": "sathyadev@123"
+      },
+	  {
+        "id": 5,
+        "firstName": "Aara",
+        "email": "aara@mail.com",
+        "password": "aara@123"
+      }	  
+	  
+    ]
+   }
