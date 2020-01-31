@@ -4,9 +4,9 @@ import './index.css';
 import createSagaMiddleware from 'redux-saga';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import rootSaga from './saga';
+import rootSaga from './sagas/Saga';
 import reducer from './reducers/Reducers';
-import RouteNav from './route/RouteNav';
+import Route from './routes/Route';
 
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(
@@ -18,7 +18,7 @@ const store = createStore(
 
 ReactDOM.render(
     <Provider store={store}>
-        <RouteNav />
+        <Route />
     </Provider>,
  document.getElementById('root'));
 
