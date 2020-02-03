@@ -1,16 +1,21 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import Cookies from 'js-cookie';
 import { getUserLog } from "../../actions/UserActions";
+import Header from "../../components/header";
 import "./style.css";
+
 class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
       email: "",
-      password: ""
+      password: "",
+      errorMsg: false
     };
   }
+
+  
 
   componentDidMount() {
     this.props.getUserLog();
@@ -24,50 +29,63 @@ class Login extends Component {
   handleSubmit = e => {
     e.preventDefault();
     const arr = this.props.data;
-    let obj = arr.find(o => o.email === this.state.email);
-    this.props.history.push("/welcome", { userObj: obj });
+    let obj = arr.find(o => o.email === this.state.email && o.password == this.state.password);
+    console.log('objjj', obj)
+    if(obj){
+      Cookies.set('userObj', obj);
+      this.props.history.push("/welcome", { userObj: obj });
+    }    
+    else {
+      this.setState ({
+        errorMsg: true
+      });
+    }
   };
   render() {
     const { email, password } = this.state;
 
     return (
       <div className="container">
-        <div className="header">
-          <p>User Authentication</p>
-        </div>
+       <Header headerName = "User Authentication"/>
         <div className="formContainer">
-          <h2>Login Form</h2>
+         <div>
           <form onSubmit={this.handleSubmit}>
-            <div class="row">
-              <div class="col-40">
-                <label>Email:</label>
+            <div className="row">
+              <div className="col-40">
+                <label>Email</label>
               </div>
-              <div class="col-60">
+              <div className="col-60">
                 <input
                   type="text"
                   name="email"
                   value={email}
                   onChange={this.handleChange}
+                  required={true}
                 />
               </div>
             </div>
-            <div class="row">
-              <div class="col-40">
-                <label>Password:</label>
+            <div className="row">
+              <div className="col-40">
+                <label>Password</label>
               </div>
-              <div class="col-60">
+              <div className="col-60">
                 <input
-                  type="text"
+                  type="password"
                   name="password"
                   value={password}
                   onChange={this.handleChange}
+                  required={true}
                 />
               </div>
             </div>
-            <div class="row">
+            {
+              this.state.errorMsg ? <p className="error">Incorrect email or password </p>:null
+            }
+            <div className="">
               <button>LogIn</button>
             </div>
           </form>
+          </div>
         </div>
       </div>
     );

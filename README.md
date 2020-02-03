@@ -15,3 +15,6 @@
 #### server/db.json - It has the json array for the user.
 
 #### server/index.js - It has the local server connectivity for the user data.
+
+#### client/components/header - Header component for the app.
+
