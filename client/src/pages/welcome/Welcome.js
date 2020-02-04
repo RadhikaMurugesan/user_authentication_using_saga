@@ -6,14 +6,19 @@ import './style.css';
 
 export default function Welcome (props) {
     const {userObj} = props.location.state;
-   const getCookie = Cookies.get('foo');
-    console.log('cookies', getCookie);
+    console.log('props', props)
+
+    const logOut = () => {
+        Cookies.remove('userObj');
+        props.history.push("/login");       
+    }
+
     return(
         <div className="container">
             <Header headerName = "Welcome User"/>
             <div className="childContainer">
                 <h3>Welcome ....{userObj.firstName}</h3>
-                <Link to="/login"><button>Logout</button></Link>
+               <button onClick = {logOut}>Logout</button>
             </div>            
         </div>
     )

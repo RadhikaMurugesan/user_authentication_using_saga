@@ -32,7 +32,10 @@ class Login extends Component {
     let obj = arr.find(o => o.email === this.state.email && o.password == this.state.password);
     console.log('objjj', obj)
     if(obj){
-      Cookies.set('userObj', obj);
+      var inFifteenMinutes = new Date(new Date().getTime() + 15 * 60 * 1000);
+      Cookies.set('userObj', obj, {
+        expires: inFifteenMinutes
+    });
       this.props.history.push("/welcome", { userObj: obj });
     }    
     else {
@@ -43,7 +46,7 @@ class Login extends Component {
   };
   render() {
     const { email, password } = this.state;
-
+    console.log('LginPage')
     return (
       <div className="container">
        <Header headerName = "User Authentication"/>
